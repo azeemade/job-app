@@ -20,11 +20,11 @@ class CreateApplicationsTable extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
-            $table->string('coverletter');
+            $table->string('coverletter', 1000);
             $table->string('last_experience_job_title');
             $table->string('last_experience_job_company');
-            $table->string('last_experience_job_summary');
-            $table->string('resume');
+            $table->string('last_experience_job_summary', 250);
+            $table->string('resume', 1000);
             $table->unsignedInteger('job_id');
             $table->timestamps();
         });
