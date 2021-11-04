@@ -18,10 +18,16 @@ class Job extends Model
         'work_conditions',
         'job_categories',
         'job_salary',
+        'business_id'
     ];
 
     public function applications()
     {
         return $this->hasMany(Application::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'business_id');
     }
 }

@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Application;
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,10 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        //User::truncate();
+        //Job::truncate();
+        //Application::truncate();
         $this->call([
-            ApplicationSeeder::class,
-            JobSeeder::class
+            UserSeeder::class,
+            JobSeeder::class,
+            ApplicationSeeder::class
         ]);
     }
 }

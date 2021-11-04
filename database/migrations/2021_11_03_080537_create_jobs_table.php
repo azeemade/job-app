@@ -13,6 +13,7 @@ class CreateJobsTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
             $table->string('job_title');
@@ -24,6 +25,9 @@ class CreateJobsTable extends Migration
             $table->enum('work_conditions', ['Remote', 'Part-remote', 'On-premise']);
             $table->enum('job_categories', ['Tech', 'Health care', 'Hospitality', 'Customer service', 'Marketing']);
             $table->double('job_salary');
+            $table->unsignedBigInteger('business_id');
+            $table->foreign('business_id')
+                ->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -35,6 +39,7 @@ class CreateJobsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('jobs');
     }
 }

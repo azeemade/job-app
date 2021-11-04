@@ -13,6 +13,7 @@ class CreateApplicationsTable extends Migration
      */
     public function up()
     {
+        Schema::enableForeignKeyConstraints();
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
             $table->string('firstname');
@@ -25,7 +26,9 @@ class CreateApplicationsTable extends Migration
             $table->string('last_experience_job_company');
             $table->string('last_experience_job_summary', 250);
             $table->string('resume', 1000);
-            $table->unsignedInteger('job_id');
+            $table->unsignedBigInteger('job_id');
+            $table->foreign('job_id')
+                ->references('id')->on('jobs');
             $table->timestamps();
         });
     }
@@ -37,6 +40,7 @@ class CreateApplicationsTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('applications');
     }
 }

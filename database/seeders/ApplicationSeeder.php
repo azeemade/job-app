@@ -15,7 +15,6 @@ class ApplicationSeeder extends Seeder
      */
     public function run()
     {
-        Application::truncate();
 
         $applicationJson = Storage::disk('public')->get("applications.json");
         $applications = json_decode($applicationJson);

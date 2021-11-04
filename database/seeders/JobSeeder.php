@@ -15,7 +15,6 @@ class JobSeeder extends Seeder
      */
     public function run()
     {
-        Job::truncate();
 
         $jobJson = Storage::disk('public')->get("jobs.json");
         $jobs = json_decode($jobJson);
@@ -30,7 +29,8 @@ class JobSeeder extends Seeder
                 'job_types' => $value->job_types,
                 'work_conditions' => $value->work_conditions,
                 'job_categories' => $value->job_categories,
-                'job_salary' => $value->job_salary
+                'job_salary' => $value->job_salary,
+                'business_id' => $value->business_id,
             ]);
         }
     }
