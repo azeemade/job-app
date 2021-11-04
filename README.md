@@ -8,8 +8,6 @@ This is a REST API for sample Job listing powered by laravel.
 -   Laravel 8
 -   Laravel Sanctum
 
----
-
 ## Features
 
 1. Business (User) can create, update, and delete a job.
@@ -18,8 +16,6 @@ This is a REST API for sample Job listing powered by laravel.
 4. Guest can search for a job.
 5. Business can see list of jobs they created.
 6. Business can login
-
----
 
 ## Data Model
 
