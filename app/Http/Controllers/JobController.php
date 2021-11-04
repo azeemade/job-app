@@ -123,15 +123,18 @@ class JobController extends Controller
         ]);
     }
 
-    public function search(Request $request)
+    public function search(Request $request, $job)
     {
-        $search = $request->input('search');
+        //$search = $request->get('job');
 
-        $result = Job::query()
-            ->where('job_title', 'LIKE', "%{$search}%")
-            ->orWhere('job_description', 'LIKE', "%{$search}%")
+        $result = Job::where('job_title', 'LIKE', "%{$job}%")
+            ->orWhere('job_description', 'LIKE', "%{$job}%")
             ->get();
 
-        return response()->json($result, 200);
+        return response()->json([
+            'status' => (bool) $result,
+            'data' => $result,
+            'message' => $result ? 'Job search is available' : 'Job search is unavailable'
+        ]);
     }
 }

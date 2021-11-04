@@ -27,19 +27,13 @@ Route::post('/application/create', [ApplicationController::class, 'store']);
 
 
 
-/**Requires Auth */
-Route::post('/job/create', [JobController::class, 'store']);
-Route::patch('/job/update/{job}', [JobController::class, 'update']);
-Route::delete('/job/delete/{job}', [JobController::class, 'destroy']);
+Route::middleware('auth:sanctum')->group(function () {
+    // return $request->user();
 
-
-
-Route::middleware('auth:sanctum')->get('/business', function (Request $request) {
-    return $request->user();
-
+    Route::get('/{user}/jobs', [UserController::class, 'showJobs']);
     Route::post('/signout', [UserController::class, 'signout']);
 
-    /* Route::post('/job/create', [JobController::class, 'store']);
-    Route::patch('/job/update/{job}', [JobController::class, 'update']);
-    Route::delete('/job/delete/{job}', [JobController::class, 'destroy']);*/
+    Route::post('/job/create', [JobController::class, 'store']);
+    Route::put('/job/update/{job}', [JobController::class, 'update']);
+    Route::delete('/job/delete/{job}', [JobController::class, 'destroy']);
 });

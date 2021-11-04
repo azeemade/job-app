@@ -107,13 +107,8 @@ class ApplicationController extends Controller
     public function uploadResume(Request $request)
     {
         if ($request->hasFile('resume')) {
-            $name = $request->job_1d . "_" . time() . "_" . $request->file('resume')->getClientOriginalName();
-            //->move(public_path('images'), $name);
-            //$path = Storage::disk('public')->put("resumes", $request->file('resume'));
-            $path = $request->file('resume')->storeAs(
-                'resumes',
-                $name
-            );
+            $name = $request->time() . "_" . $request->file('resume')->getClientOriginalName();
+            $path = Storage::putFileAs("resumes", $request->file('resume'), $name);
         }
         return $path;
     }
