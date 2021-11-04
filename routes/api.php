@@ -34,10 +34,10 @@ Route::delete('/job/delete/{job}', [JobController::class, 'destroy']);
 
 
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/business', function (Request $request) {
     return $request->user();
 
-    Route::pst('/signout', [UserController::class, 'signout']);
+    Route::post('/signout', [UserController::class, 'signout']);
 
     /* Route::post('/job/create', [JobController::class, 'store']);
     Route::patch('/job/update/{job}', [JobController::class, 'update']);
